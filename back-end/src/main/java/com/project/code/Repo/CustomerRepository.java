@@ -31,6 +31,8 @@ public interface CustomerRepository extends JpaRepository<Customer,Long>
       
 // Example: public Customer findById(Long id);
 
+    Customer findByid(Long id);
+
 // 3. Add any additional methods you may need for custom queries:
 //    - You can create other query methods as needed, like finding customers by name or phone number, etc.
 
