@@ -1,6 +1,11 @@
 package com.project.code.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+
+import java.util.Date;
+
 public class OrderDetails {
 
 // 1. Add 'id' field:
@@ -9,11 +14,20 @@ public class OrderDetails {
 //    - Use @Id to mark it as the primary key.
 //    - Use @GeneratedValue(strategy = GenerationType.IDENTITY) to auto-increment it.
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
 // 2. Add 'customer' field:
 //    - Type: private Customer
 //    - This field refers to the customer who placed the order.
 //    - Use @ManyToOne with @JoinColumn(name = "customer_id") to define the foreign key relationship.
 //    - Apply @JsonManagedReference to handle bidirectional relationships and JSON serialization.
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    @JsonBackReference
+    private Customer customer;
 
 // 3. Add 'store' field:
 //    - Type: private Store
@@ -21,13 +35,22 @@ public class OrderDetails {
 //    - Use @ManyToOne with @JoinColumn(name = "store_id") to define the foreign key relationship.
 //    - Apply @JsonManagedReference to handle bidirectional relationships and JSON serialization.
 
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    @JsonBackReference
+    private Store store;
+
 // 4. Add 'totalPrice' field:
 //    - Type: private Double
 //    - This field represents the total price of the order.
 
+    private Double totalPrice;
+
 // 5. Add 'date' field:
 //    - Type: private LocalDateTime
 //    - This field represents the date and time when the order was placed.
+
+    private Date localDateTime;
 
 // 6. Add 'orderItems' field:
 //    - Type: private List<OrderItem>
