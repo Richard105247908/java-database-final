@@ -72,5 +72,37 @@ public class Inventory {
 //    - Example: public Store getStore(), public void setStore(Store store)
 //    - Example: public Integer getStockLevel(), public void setStockLevel(Integer stockLevel)
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Product getStore() {
+        return store;
+    }
+
+    public void setStore(Product store) {
+        this.store = store;
+    }
+
+    public Integer getStockLevel() {
+        return stockLevel;
+    }
+
+    public void setStockLevel(Integer stockLevel) {
+        this.stockLevel = stockLevel;
+    }
 }
 
