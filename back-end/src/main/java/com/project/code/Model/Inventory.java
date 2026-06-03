@@ -53,6 +53,14 @@ public class Inventory {
 // 7. Create a constructor:
 //    - Add a constructor that takes a Product, Store, and Integer stockLevel to initialize the Inventory object.
 
+    public Inventory(long id, Product product, Product store, Integer stockLevel) {
+        this.id = id;
+        this.product = product;
+        this.store = store;
+        this.stockLevel = stockLevel;
+    }
+
+
 // 8. Add @Entity annotation:
 //    - Use @Entity above the class definition to mark it as a JPA entity that will be mapped to a database table.
 
