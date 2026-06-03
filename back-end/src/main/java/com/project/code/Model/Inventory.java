@@ -1,12 +1,19 @@
 package com.project.code.Model;
 
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 public class Inventory {
    // 1. Add 'id' field:
 //    - Type: private long 
 //    - This field will represent the unique identifier for the inventory entry.
 //    - Use @Id to mark it as the primary key.
-//    - Use @GeneratedValue(strategy = GenerationType.IDENTITY) to auto-increment it.
+//    - Use @GeneratedValue(strategy = GenerationType.IDENTITY) to auto-increment it. ;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
 // 2. Add 'product' field:
 //    - Type: private Product
