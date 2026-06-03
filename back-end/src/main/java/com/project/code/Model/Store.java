@@ -1,6 +1,10 @@
 package com.project.code.Model;
 
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 public class Store {
 
 // 1. Add 'id' field:
@@ -8,6 +12,10 @@ public class Store {
 //    - This field will be auto-incremented.
 //    - Use @Id to mark it as the primary key.
 //    - Use @GeneratedValue(strategy = GenerationType.IDENTITY) to auto-increment it.
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
 // 2. Add 'name' field:
 //    - Type: private String
