@@ -1,11 +1,13 @@
 package com.project.code.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
+@Entity
 public class Customer {
 
 // 1. Add 'id' field: 
@@ -51,6 +53,7 @@ public class Customer {
     // Example: @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     // Example: @JsonManagedReference
     @OneToMany(mappedBy = "customers", fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<OrderItem> orders;
 
 // 6. Getters and Setters:
