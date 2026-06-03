@@ -3,9 +3,10 @@ package com.project.code.Repo;
 
 import com.project.code.Model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface CustomerRepository extends JpaRepository<Customer,Long>
 {
 // 1. Add the repository interface:
@@ -37,6 +38,8 @@ public interface CustomerRepository extends JpaRepository<Customer,Long>
 //    - You can create other query methods as needed, like finding customers by name or phone number, etc.
 
 // Example: public List<Customer> findByName(String name);
+
+    Customer findByName(String name);
 
 // 4. Add @Repository annotation:
 //    - Mark the interface with @Repository to indicate that it's a Spring Data JPA repository.
