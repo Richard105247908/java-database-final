@@ -2,10 +2,7 @@ package com.project.code.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 public class Inventory {
    // 1. Add 'id' field:
@@ -24,7 +21,7 @@ public class Inventory {
 
     @ManyToOne
     @JsonBackReference("inventory-product")
-
+    @JoinColumn(name ="product_id")
     private Product product;
 
 // 3. Add 'store' field:
@@ -34,6 +31,7 @@ public class Inventory {
 
     @ManyToOne
     @JsonBackReference("inventory-store")
+    @JoinColumn(name = "store_id")
     private Product store;
 
 // 4. Add 'stockLevel' field:
