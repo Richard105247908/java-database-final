@@ -1,6 +1,10 @@
 package com.project.code.Model;
 
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 public class Customer {
 
 // 1. Add 'id' field: 
@@ -8,9 +12,14 @@ public class Customer {
 //    - It should be auto-incremented.
 //    - Use @Id to mark it as the primary key and @GeneratedValue(strategy = GenerationType.IDENTITY) to auto-increment it.
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
 // 2. Add 'name' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+
 
     // Example: @NotNull(message = "Name cannot be null")
 
@@ -18,11 +27,13 @@ public class Customer {
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
 
+
     // Example: @NotNull(message = "Email cannot be null")
 
 // 4. Add 'phone' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+
 
     // Example: @NotNull(message = "Phone cannot be null")
 
