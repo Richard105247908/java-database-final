@@ -28,6 +28,8 @@ public class Inventory {
 //    - Type: private Store
 //    - This field will represent the store where the inventory is located.
 //    - Use @ManyToOne to establish a many-to-one relationship with the Store entity.
+    @ManyToOne
+    private Product store;
 
 // 4. Add 'stockLevel' field:
 //    - Type: private Integer
