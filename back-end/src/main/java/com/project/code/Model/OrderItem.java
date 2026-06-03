@@ -69,5 +69,45 @@ public class OrderItem {
 // 8. Add Getters and Setters:
 //    - Add getter and setter methods for all fields (id, order, product, quantity, price).
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public OrderDetails getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderDetails order) {
+        this.order = order;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }
 
