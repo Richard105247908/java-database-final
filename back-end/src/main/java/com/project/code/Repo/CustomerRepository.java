@@ -11,7 +11,7 @@ public interface CustomerRepository extends JpaRepository<Customer,Long>
 // 1. Add the repository interface:
 //    - Extend JpaRepository<Customer, Long> to inherit basic CRUD functionality.
 //    - This allows the repository to perform operations like save, delete, update, and find without having to implement these methods manually.
-    
+
 // Example: public interface CustomerRepository extends JpaRepository<Customer, Long> {}
 
 // 2. Add custom query methods:
@@ -21,6 +21,8 @@ public interface CustomerRepository extends JpaRepository<Customer,Long>
 //      - Parameter: String email
       
 // Example: public Customer findByEmail(String email);
+
+     Customer findByEmail(String email);
 
 //    - **findById**:
 //      - This method will allow you to find a customer by their ID.
