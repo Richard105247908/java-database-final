@@ -20,18 +20,19 @@ public class Customer {
 // 2. Add 'name' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+// Example: @NotNull(message = "Name cannot be null")
+
     @NotNull(message = "Name cannot be null")
     private String name;
-
-
-    // Example: @NotNull(message = "Name cannot be null")
 
 // 3. Add 'email' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+// Example: @NotNull(message = "Email cannot be null")
 
-
-    // Example: @NotNull(message = "Email cannot be null")
+    @NotNull(message = "email cannot be empty")
+    private String email;
+    
 
 // 4. Add 'phone' field:
 //    - Type: private String
