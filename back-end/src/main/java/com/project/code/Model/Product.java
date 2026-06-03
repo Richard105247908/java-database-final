@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
+@Entity
 public class Product {
 
 // 1. Add 'id' field:
@@ -59,7 +60,7 @@ public class Product {
     @OneToMany(mappedBy = "product")
     @JsonBackReference("inventory-product")
     private List<Inventory>inventory_product;
-    
+
 // 7. Add @Entity annotation:
 //    - Use @Entity above the class name to mark it as a JPA entity.
 
