@@ -4,6 +4,7 @@ package com.project.code.Model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 
 public class Customer {
 
@@ -19,6 +20,8 @@ public class Customer {
 // 2. Add 'name' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+    @NotNull(message = "Name cannot be null")
+    private String name;
 
 
     // Example: @NotNull(message = "Name cannot be null")
