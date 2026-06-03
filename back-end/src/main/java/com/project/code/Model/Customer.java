@@ -32,14 +32,15 @@ public class Customer {
 
     @NotNull(message = "email cannot be empty")
     private String email;
-    
+
 
 // 4. Add 'phone' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+// Example: @NotNull(message = "Phone cannot be null")
 
-
-    // Example: @NotNull(message = "Phone cannot be null")
+    @NotNull(message = "Phone number cannot be empty")
+    private String phone;
 
 // 5. Add one-to-many relationship with orders:
 //    - A customer can have multiple orders.
