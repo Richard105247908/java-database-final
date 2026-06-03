@@ -1,6 +1,7 @@
 package com.project.code.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,13 +23,17 @@ public class Inventory {
 //    - Use @ManyToOne to establish a many-to-one relationship with the Product entity.
 
     @ManyToOne
+    @JsonBackReference("inventory-product")
+
     private Product product;
 
 // 3. Add 'store' field:
 //    - Type: private Store
 //    - This field will represent the store where the inventory is located.
 //    - Use @ManyToOne to establish a many-to-one relationship with the Store entity.
+
     @ManyToOne
+    @JsonBackReference("inventory-store")
     private Product store;
 
 // 4. Add 'stockLevel' field:
