@@ -1,6 +1,7 @@
 package com.project.code.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -43,10 +44,19 @@ public class Store {
 //    - Use @JsonManagedReference("inventory-store") to manage bidirectional relationships and avoid circular references.
 
     @OneToMany(mappedBy = "store")
+    @JsonBackReference("inventory-store")
     private List<Inventory> inventory_store;
 
 // 5. Add constructor:
 //    - Create a constructor that accepts name and address as parameters to initialize the Store object.
+
+    public Store(long id, String name, String address, List<Inventory> inventory_store) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.inventory_store = inventory_store;
+    }
+
 
 // 6. Add @Entity annotation:
 //    - Use @Entity above the class name to mark it as a JPA entity.
