@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 public class OrderDetails {
 
@@ -58,9 +59,15 @@ public class OrderDetails {
 //    - Use @OneToMany(mappedBy = "order", fetch = FetchType.EAGER) to establish the one-to-many relationship with OrderItem.
 //    - Apply @JsonManagedReference to prevent circular references during JSON serialization.
 
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @JsonBackReference
+    private List<OrderItem> orderItems;
+
 // 7. Add constructors:
 //    - A no-argument constructor.
 //    - A parameterized constructor that accepts Customer, Store, totalPrice, and date as parameters.
+
+    
 
 // 8. Add @Entity annotation:
 //    - Use @Entity above the class name to mark it as a JPA entity.
