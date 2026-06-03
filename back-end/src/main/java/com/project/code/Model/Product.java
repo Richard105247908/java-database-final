@@ -28,9 +28,16 @@ public class Product {
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
 
+
+    @NotNull(message = "Category cannot be null")
+    private String category;
+
 // 4. Add 'price' field:
 //    - Type: private Double
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+
+    @NotNull(message = "Price cannot be null")
+    private Double price;
 
 // 5. Add 'sku' field:
 //    - Type: private String
