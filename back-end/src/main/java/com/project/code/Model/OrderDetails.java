@@ -67,9 +67,19 @@ public class OrderDetails {
 //    - A no-argument constructor.
 //    - A parameterized constructor that accepts Customer, Store, totalPrice, and date as parameters.
 
-    
+    public OrderDetails() {
+    }
 
-// 8. Add @Entity annotation:
+    public OrderDetails(Customer customer, Store store, Double totalPrice, Date localDateTime, List<OrderItem> orderItems) {
+
+        this.customer = customer;
+        this.store = store;
+        this.totalPrice = totalPrice;
+        this.localDateTime = localDateTime;
+        this.orderItems = orderItems;
+    }
+
+    // 8. Add @Entity annotation:
 //    - Use @Entity above the class name to mark it as a JPA entity.
 
 // 9. Add Getters and Setters:
