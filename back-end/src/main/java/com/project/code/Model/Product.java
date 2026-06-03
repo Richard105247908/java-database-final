@@ -1,8 +1,11 @@
 package com.project.code.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
 
 public class Product {
 
@@ -53,6 +56,10 @@ public class Product {
 //    - Use @OneToMany(mappedBy = "product") to reflect the one-to-many relationship with Inventory.
 //    - Use @JsonManagedReference("inventory-product") to manage bidirectional relationships and avoid circular references.
 
+    @OneToMany(mappedBy = "product")
+    @JsonBackReference("inventory-product")
+    private List<Inventory>inventory_product;
+    
 // 7. Add @Entity annotation:
 //    - Use @Entity above the class name to mark it as a JPA entity.
 
