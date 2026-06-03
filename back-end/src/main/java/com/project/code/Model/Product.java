@@ -67,6 +67,54 @@ public class Product {
 // 8. Add Getters and Setters:
 //    - Add getter and setter methods for all fields (id, name, category, price, sku).
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public List<Inventory> getInventory_product() {
+        return inventory_product;
+    }
+
+    public void setInventory_product(List<Inventory> inventory_product) {
+        this.inventory_product = inventory_product;
+    }
 }
 
 
