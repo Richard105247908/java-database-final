@@ -35,6 +35,8 @@ public class Inventory {
 //    - Type: private Integer
 //    - This field will represent the current stock level of the product at the store.
 
+    private Integer stockLevel;
+
 // 5. Add relationships:
 //    - **Product Relationship**: Use @ManyToOne to link this inventory entry to a product.
 //    - **Store Relationship**: Use @ManyToOne to link this inventory entry to a store.
