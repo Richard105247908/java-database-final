@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class OrderDetails {
 
 // 1. Add 'id' field:
@@ -84,5 +85,53 @@ public class OrderDetails {
 
 // 9. Add Getters and Setters:
 //    - Add getter and setter methods for all fields (id, customer, store, totalPrice, date, orderItems).
-  
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Date getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(Date localDateTime) {
+        this.localDateTime = localDateTime;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 }
