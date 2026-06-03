@@ -1,9 +1,7 @@
 package com.project.code.Model;
 
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 public class Product {
@@ -43,6 +41,10 @@ public class Product {
 //    - Type: private String
 //    - This field cannot be empty, must be unique, use the @NotNull annotation to enforce this rule.
 //    - Use the @Table annotation with uniqueConstraints to ensure the 'sku' column is unique.
+
+    @Table(name = "product", uniqueConstraints = @UniqueConstraint(columnNames = "sku"))
+    @NotNull(message = "Sku cannot be null")
+    private String sku;
 
 //    Example: @Table(name = "product", uniqueConstraints = @UniqueConstraint(columnNames = "sku"))
 
