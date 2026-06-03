@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
+@Table(name = "product", uniqueConstraints = @UniqueConstraint(columnNames = "sku"))
 public class Product {
 
 // 1. Add 'id' field:
@@ -46,7 +47,6 @@ public class Product {
 //    - This field cannot be empty, must be unique, use the @NotNull annotation to enforce this rule.
 //    - Use the @Table annotation with uniqueConstraints to ensure the 'sku' column is unique.
 
-    @Table(name = "product", uniqueConstraints = @UniqueConstraint(columnNames = "sku"))
     @NotNull(message = "Sku cannot be null")
     private String sku;
 
