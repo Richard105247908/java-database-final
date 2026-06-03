@@ -4,6 +4,7 @@ package com.project.code.Model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 public class Inventory {
    // 1. Add 'id' field:
@@ -19,6 +20,9 @@ public class Inventory {
 //    - Type: private Product
 //    - This field will represent the product associated with the inventory entry.
 //    - Use @ManyToOne to establish a many-to-one relationship with the Product entity.
+
+    @ManyToOne
+    private Product product;
 
 // 3. Add 'store' field:
 //    - Type: private Store
