@@ -72,11 +72,15 @@ public class OrderService {
      orderDetails.setTotalPrice(placeOrderRequest.getTotalPrice());
      orderDetails.setLocalDateTime(LocalDate.from(java.time.LocalDateTime.now()));
 
+     orderDetails= orderDetailsRepository.save(orderDetails);
+
 // 5. **Create and Save OrderItems**:
 //    - For each product purchased, find the corresponding inventory, update stock levels, and save the changes using `inventoryRepository.save()`.
 //    - Create and save `OrderItem` for each product and associate it with the `OrderDetails` using `orderItemRepository.save()`.
 
      
+
+
 
  }
 }
