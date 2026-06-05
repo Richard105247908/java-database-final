@@ -9,6 +9,8 @@ import com.project.code.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class OrderService {
 
@@ -66,10 +68,15 @@ public class OrderService {
 
      OrderDetails orderDetails=new OrderDetails();
      orderDetails.setCustomer(customer);
+     orderDetails.setStore(store);
+     orderDetails.setTotalPrice(placeOrderRequest.getTotalPrice());
+     orderDetails.setLocalDateTime(LocalDate.from(java.time.LocalDateTime.now()));
 
 // 5. **Create and Save OrderItems**:
 //    - For each product purchased, find the corresponding inventory, update stock levels, and save the changes using `inventoryRepository.save()`.
 //    - Create and save `OrderItem` for each product and associate it with the `OrderDetails` using `orderItemRepository.save()`.
+
+     
 
  }
 }

@@ -4,6 +4,7 @@ package com.project.code.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -123,7 +124,7 @@ public class OrderDetails {
         return localDateTime;
     }
 
-    public void setLocalDateTime(Date localDateTime) {
+    public void setLocalDateTime(LocalDate localDateTime) {
         this.localDateTime = localDateTime;
     }
 
