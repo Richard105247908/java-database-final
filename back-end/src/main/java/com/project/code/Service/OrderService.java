@@ -1,11 +1,30 @@
 package com.project.code.Service;
 
 
+import com.project.code.Repo.*;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class OrderService {
+
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private InventoryRepository inventoryRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
+    @Autowired
+    private StoreRepository storeRepository;
+    @Autowired
+    private OrderDetailsRepository orderDetailsRepository;
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
 // 1. **saveOrder Method**:
 //    - Processes a customer's order, including saving the order details and associated items.
 //    - Parameters: `PlaceOrderRequestDTO placeOrderRequest` (Request data for placing an order)
 //    - Return Type: `void` (This method doesn't return anything, it just processes the order)
+
+    
 
 // 2. **Retrieve or Create the Customer**:
 //    - Check if the customer exists by their email using `findByEmail`.
