@@ -1,6 +1,9 @@
 package com.project.code.Repo;
 
-public interface StoreRepository {
+import com.project.code.Model.Store;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StoreRepository extends JpaRepository<Store, Long> {
 // 1. Add the repository interface:
 //    - Extend JpaRepository<Store, Long> to inherit basic CRUD functionality.
 //    - This allows the repository to perform operations like save, delete, update, and find without having to implement these methods manually.
