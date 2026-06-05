@@ -3,7 +3,9 @@ package com.project.code.Service;
 
 import com.project.code.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderService {
 
     @Autowired
@@ -24,7 +26,7 @@ public class OrderService {
 //    - Parameters: `PlaceOrderRequestDTO placeOrderRequest` (Request data for placing an order)
 //    - Return Type: `void` (This method doesn't return anything, it just processes the order)
 
-    
+
 
 // 2. **Retrieve or Create the Customer**:
 //    - Check if the customer exists by their email using `findByEmail`.
