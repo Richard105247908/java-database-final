@@ -2,10 +2,15 @@ package com.project.code.Repo;
 
 
 import com.project.code.Model.Inventory;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 // 1. Add the repository interface:
 //    - Extend JpaRepository<Inventory, Long> to inherit basic CRUD functionality.
@@ -21,7 +26,8 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
       
 // Example: public Inventory findByProductIdandStoreId(Long productId, Long storeId);
 
-     Inventory findByProductIdandStoreId(Long productId, Long storeId);
+    @Query("SELECT i FROM Inventory i WHERE i.product.id = :productId AND i.store.id = :storeId")
+    Inventory findByProductIdandStoreId(Long productId, Long storeId);
 
 //    - **findByStore_Id**:
 //      - This method will allow you to find a list of inventory records for a specific store.
@@ -30,7 +36,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
       
 // Example: public List<Inventory> findByStore_Id(Long storeId);
 
-     List<Inventory> findByStore_Id(Long storeId);
+    List<Inventory> findByStore_Id(Long storeId);
 
 //    - **deleteByProductId**:
 //      - This method will allow you to delete all inventory records related to a specific product ID.
@@ -38,6 +44,10 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 //      - Parameter: Long productId
 //      - Use @Modifying and @Transactional annotations to ensure the database is modified correctly.
 
+   @Transactional
+   @Modifying
+   @Query("DELETE FROM Inventory i WHERE i.product.id = :productId")
    Void deleteByProductId(Long productId);
+
 
 }
