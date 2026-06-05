@@ -43,16 +43,18 @@ public class Store {
 
     @OneToMany(mappedBy = "store")
     @JsonBackReference("inventory-store")
-    private List<Inventory> inventory_store;
+    private List<Inventory> inventory;
+
 
 // 5. Add constructor:
 //    - Create a constructor that accepts name and address as parameters to initialize the Store object.
 
-    public Store(long id, String name, String address, List<Inventory> inventory_store) {
-        this.id = id;
+    public Store(){};
+
+    public Store( String name, String address) {
         this.name = name;
         this.address = address;
-        this.inventory_store = inventory_store;
+        ;
     }
 
 
@@ -87,12 +89,12 @@ public class Store {
         this.address = address;
     }
 
-    public List<Inventory> getInventory_store() {
-        return inventory_store;
+    public List<Inventory> getInventory() {
+        return inventory;
     }
 
-    public void setInventory_store(List<Inventory> inventory_store) {
-        this.inventory_store = inventory_store;
+    public void setInventory(List<Inventory> inventory) {
+        this.inventory = inventory;
     }
 }
 

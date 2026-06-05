@@ -2,6 +2,10 @@ package com.project.code.Repo;
 
 import com.project.code.Model.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface StoreRepository extends JpaRepository<Store, Long> {
 // 1. Add the repository interface:
@@ -18,12 +22,17 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
 
 // Example: public Store findById(Long id);
 
+   Store findStoreById(Long id);
+
+
 //    - **findBySubName**:
 //      - This method will retrieve stores whose name contains a given substring.
 //      - Return type: List<Store>
 //      - Parameter: String pname
 //      - Use @Query annotation to write a custom query.
 
+    @Query("SELECT i FROM Store i WHERE LOWER (i.name) LIKE LOWER(CONCAT('%', :pname, '%'))")
+    List<Store> findBySubName(String pname);
    
 
 }
