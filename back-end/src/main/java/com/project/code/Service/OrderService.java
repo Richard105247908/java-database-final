@@ -2,6 +2,7 @@ package com.project.code.Service;
 
 
 import com.project.code.Model.Customer;
+import com.project.code.Model.OrderDetails;
 import com.project.code.Model.PlaceOrderRequestDTO;
 import com.project.code.Model.Store;
 import com.project.code.Repo.*;
@@ -63,7 +64,8 @@ public class OrderService {
 //    - Create a new `OrderDetails` object and set customer, store, total price, and the current timestamp.
 //    - Set the order date using `java.time.LocalDateTime.now()` and save the order with `orderDetailsRepository.save()`.
 
-     
+     OrderDetails orderDetails=new OrderDetails();
+     orderDetails.setCustomer(customer);
 
 // 5. **Create and Save OrderItems**:
 //    - For each product purchased, find the corresponding inventory, update stock levels, and save the changes using `inventoryRepository.save()`.
