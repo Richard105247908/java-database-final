@@ -1,15 +1,13 @@
 package com.project.code.Service;
 
 
-import com.project.code.Model.Customer;
-import com.project.code.Model.OrderDetails;
-import com.project.code.Model.PlaceOrderRequestDTO;
-import com.project.code.Model.Store;
+import com.project.code.Model.*;
 import com.project.code.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -78,9 +76,19 @@ public class OrderService {
 //    - For each product purchased, find the corresponding inventory, update stock levels, and save the changes using `inventoryRepository.save()`.
 //    - Create and save `OrderItem` for each product and associate it with the `OrderDetails` using `orderItemRepository.save()`.
 
-     
+     List<PurchaseProductDTO> purchaseProducts = placeOrderRequest.getPurchaseProduct();
+     for (PurchaseProductDTO productDTO : purchaseProducts) {
+         OrderItem orderItem = new OrderItem();
+         Inventory inventory = inventoryRepository.findByProductIdandStoreId(productDTO.getId(), placeOrderRequest.getStoreId());
+         inventory.setStockLevel(inventory.getStockLevel() - productDTO.getQuantity());
+         inventoryRepository.save(inventory);
+         orderItem.setOrder(orderDetails); // Link the order to the order item
+         orderItem.setProduct(productRepository.findByid(productDTO.getId()));
+         orderItem.setQuantity(productDTO.getQuantity());
+         orderItem.setPrice(productDTO.getPrice() * productDTO.getQuantity());
+         orderItemRepository.save(orderItem); // Save OrderItem
 
-
+     }
 
  }
 }
