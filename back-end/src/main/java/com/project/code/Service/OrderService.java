@@ -68,7 +68,7 @@ public class OrderService {
      orderDetails.setCustomer(customer);
      orderDetails.setStore(store);
      orderDetails.setTotalPrice(placeOrderRequest.getTotalPrice());
-     orderDetails.setLocalDateTime(LocalDate.from(java.time.LocalDateTime.now()));
+     orderDetails.setDate(java.time.LocalDateTime.now());
 
      orderDetails= orderDetailsRepository.save(orderDetails);
 

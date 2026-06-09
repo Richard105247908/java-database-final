@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -53,7 +53,7 @@ public class OrderDetails {
 //    - Type: private LocalDateTime
 //    - This field represents the date and time when the order was placed.
 
-    private Date localDateTime;
+    private LocalDateTime date;
 
 // 6. Add 'orderItems' field:
 //    - Type: private List<OrderItem>
@@ -72,12 +72,12 @@ public class OrderDetails {
     public OrderDetails() {
     }
 
-    public OrderDetails(Customer customer, Store store, Double totalPrice, Date localDateTime, List<OrderItem> orderItems) {
+    public OrderDetails(Customer customer, Store store, Double totalPrice, LocalDateTime date, List<OrderItem> orderItems) {
 
         this.customer = customer;
         this.store = store;
         this.totalPrice = totalPrice;
-        this.localDateTime = localDateTime;
+        this.date = date;
         this.orderItems = orderItems;
     }
 
@@ -120,12 +120,12 @@ public class OrderDetails {
         this.totalPrice = totalPrice;
     }
 
-    public Date getLocalDateTime() {
-        return localDateTime;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setLocalDateTime(LocalDate localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     public List<OrderItem> getOrderItems() {
