@@ -1,15 +1,18 @@
 package com.project.code.Controller;
 
+import com.project.code.Repo.InventoryRepository;
+import com.project.code.Repo.ProductRepository;
+import com.project.code.Service.ServiceClass;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/inventory")
 public class InventoryController {
 // 1. Set Up the Controller Class:
 //    - Annotate the class with `@RestController` to indicate that this is a REST controller, which handles HTTP requests and responses.
 //    - Use `@RequestMapping("/inventory")` to set the base URL path for all methods in this controller. All endpoints related to inventory will be prefixed with `/inventory`.
-
-    @RequestMapping("/inventory")
 
 // 2. Autowired Dependencies:
 //    - Autowire necessary repositories and services:
@@ -17,6 +20,12 @@ public class InventoryController {
 //      - `InventoryRepository` will handle CRUD operations related to the inventory.
 //      - `ServiceClass` will help with the validation logic (e.g., validating product IDs and inventory data).
 
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private InventoryRepository inventoryRepository;
+    @Autowired
+    private ServiceClass serviceClass;
 
 // 3. Define the `updateInventory` Method:
 //    - This method handles HTTP PUT requests to update inventory for a product.
