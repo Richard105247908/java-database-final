@@ -60,12 +60,18 @@ public class ServiceClass {
 
     public boolean ValidateProductId(Long id){
         return productRepository.findByid(id) !=null;
-        
     }
 
 // 4. **getInventoryId Method**:
 //    - Fetches the inventory record for a given product and store combination.
 //    - Parameters: `Inventory inventory`
 //    - Return Type: `Inventory` (Returns the inventory record for the product-store combination)
+
+    public Inventory getInventoryId(Inventory inventory){
+        Inventory result = inventoryRepository.findByProductIdandStoreId(inventory.getProduct().getId(),inventory.getStore().getId());
+
+        return result;
+
+    }
 
 }
