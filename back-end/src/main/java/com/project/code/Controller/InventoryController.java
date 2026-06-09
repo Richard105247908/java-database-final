@@ -1,10 +1,15 @@
 package com.project.code.Controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class InventoryController {
 // 1. Set Up the Controller Class:
 //    - Annotate the class with `@RestController` to indicate that this is a REST controller, which handles HTTP requests and responses.
 //    - Use `@RequestMapping("/inventory")` to set the base URL path for all methods in this controller. All endpoints related to inventory will be prefixed with `/inventory`.
 
+    @RequestMapping("/inventory")
 
 // 2. Autowired Dependencies:
 //    - Autowire necessary repositories and services:
