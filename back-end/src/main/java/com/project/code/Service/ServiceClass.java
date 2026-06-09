@@ -58,6 +58,11 @@ public class ServiceClass {
 //    - Parameters: `long id`
 //    - Return Type: `boolean` (Returns `false` if the product does not exist with the given ID, otherwise `true`)
 
+    public boolean ValidateProductId(Long id){
+        return productRepository.findByid(id) !=null;
+        
+    }
+
 // 4. **getInventoryId Method**:
 //    - Fetches the inventory record for a given product and store combination.
 //    - Parameters: `Inventory inventory`
