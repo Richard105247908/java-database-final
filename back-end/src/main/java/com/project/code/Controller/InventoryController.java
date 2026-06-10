@@ -3,6 +3,7 @@ package com.project.code.Controller;
 import com.project.code.Model.CombinedRequest;
 import com.project.code.Model.Inventory;
 import com.project.code.Model.Product;
+import com.project.code.Model.Store;
 import com.project.code.Repo.InventoryRepository;
 import com.project.code.Repo.ProductRepository;
 import com.project.code.Service.ServiceClass;
@@ -11,6 +12,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -100,28 +102,28 @@ public class InventoryController {
     @PostMapping
     public Map<String, String>saveInventory(@RequestBody Inventory inventory) {
 
-        Map<String, String> response = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
         try {
         if (!serviceClass.validateInventory(inventory)) {
 
 
-                response.put("message", "Data already exists");
-                return response;
+                map.put("message", "Data already exists");
+                return map;
             }else{
                 inventoryRepository.save(inventory);
-                response.put("message", "Inventory data saved successfully");
-                return response;
+                map.put("message", "Inventory data saved successfully");
+                return map;
             }
 
         } catch(DataIntegrityViolationException e){
-            response.put("message", "Error: " + e);
+            map.put("message", "Error: " + e);
             System.out.println(e);
-            return response;
+            return map;
         } catch(Exception e){
-            response.put("message", "Error: " + e);
+            map.put("message", "Error: " + e);
             System.out.println(e);
-            return response;
+            return map;
         }
     }
 
@@ -133,6 +135,16 @@ public class InventoryController {
 //    - It uses the `storeId` as a path variable and fetches the list of products from the database for the given store.
 //    - The products are returned in a `Map` with the key `"products"`.
 
+    @GetMapping("/{storeid}")
+    public Map<String,Object>getAllProducts(@PathVariable long storeid){
+        Map<String, Object>map=new HashMap<>();
+
+       List<Product>result= productRepository.findProductsByStoreId(storeid);
+       map.put("products",result);
+       return map;
+
+
+    }
 
 // 6. Define the `getProductName` Method:
 //    - This method handles HTTP GET requests to filter products by category and name.
