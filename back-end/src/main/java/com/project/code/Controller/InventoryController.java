@@ -1,11 +1,20 @@
 package com.project.code.Controller;
 
+import com.project.code.Model.CombinedRequest;
+import com.project.code.Model.Inventory;
+import com.project.code.Model.Product;
 import com.project.code.Repo.InventoryRepository;
 import com.project.code.Repo.ProductRepository;
 import com.project.code.Service.ServiceClass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/inventory")
@@ -33,11 +42,65 @@ public class InventoryController {
 //    - The product ID is validated, and if valid, the inventory is updated in the database.
 //    - If the inventory exists, update it and return a success message. If not, return a message indicating no data available.
 
+    @PutMapping
+    public Map<String, String> updateInventory(@RequestBody CombinedRequest combinedRequest) {
+
+        Product product = combinedRequest.getProduct();
+        Inventory inventory = combinedRequest.getInventory();
+
+        Map<String, String> response = new HashMap<>();
+
+        if (!serviceClass.validateProductId(product.getId())) {
+
+            response.put("Error" + product.getId(), "failed to update inventory" + inventory.getId());
+            return response;
+        }
+
+        productRepository.save(product);
+        response.put("message", "Successfully updated product with id: " + product.getId());
+
+        if (inventory != null) {
+            try {
+                Inventory result = serviceClass.getInventoryId(inventory);
+
+                if (result != null) {
+                    inventory.setId(result.getId());
+                    inventoryRepository.save(inventory);
+                    response.put("message", "Successfully updated product" + inventory.getId());
+                    return response;
+
+
+            } else{
+
+                response.put("message", "No data available for this product or store id");
+                return response;
+            }
+
+
+        }catch(DataIntegrityViolationException e){
+            response.put("message", "Error: " + e);
+            System.out.println(e);
+            return response;
+        } catch(Exception e){
+            response.put("message", "Error: " + e);
+            System.out.println(e);
+            return response;
+        }
+    }
+
+        return response;
+    }
+
+
+
+
 
 // 4. Define the `saveInventory` Method:
 //    - This method handles HTTP POST requests to save a new inventory entry.
 //    - It accepts an `Inventory` object in the request body.
 //    - It first validates whether the inventory already exists. If it exists, it returns a message stating so. If it doesn’t exist, it saves the inventory and returns a success message.
+
+    
 
 
 // 5. Define the `getAllProducts` Method:

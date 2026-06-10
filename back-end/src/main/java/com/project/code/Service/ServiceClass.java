@@ -58,7 +58,7 @@ public class ServiceClass {
 //    - Parameters: `long id`
 //    - Return Type: `boolean` (Returns `false` if the product does not exist with the given ID, otherwise `true`)
 
-    public boolean ValidateProductId(Long id){
+    public boolean validateProductId(Long id){
         return productRepository.findByid(id) !=null;
     }
 
@@ -71,7 +71,6 @@ public class ServiceClass {
         Inventory result = inventoryRepository.findByProductIdandStoreId(inventory.getProduct().getId(),inventory.getStore().getId());
 
         return result;
-
     }
 
 }
