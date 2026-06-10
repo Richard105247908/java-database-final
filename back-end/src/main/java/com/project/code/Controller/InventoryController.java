@@ -8,10 +8,7 @@ import com.project.code.Repo.ProductRepository;
 import com.project.code.Service.ServiceClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -100,7 +97,35 @@ public class InventoryController {
 //    - It accepts an `Inventory` object in the request body.
 //    - It first validates whether the inventory already exists. If it exists, it returns a message stating so. If it doesn’t exist, it saves the inventory and returns a success message.
 
-    
+    @PostMapping
+    public Map<String, String>saveInventory(@RequestBody Inventory inventory) {
+
+        Map<String, String> response = new HashMap<>();
+
+        try {
+        if (!serviceClass.validateInventory(inventory)) {
+
+
+                response.put("message", "Data already exists");
+                return response;
+            }else{
+                inventoryRepository.save(inventory);
+                response.put("message", "Inventory data saved successfully");
+                return response;
+            }
+
+        } catch(DataIntegrityViolationException e){
+            response.put("message", "Error: " + e);
+            System.out.println(e);
+            return response;
+        } catch(Exception e){
+            response.put("message", "Error: " + e);
+            System.out.println(e);
+            return response;
+        }
+    }
+
+
 
 
 // 5. Define the `getAllProducts` Method:
