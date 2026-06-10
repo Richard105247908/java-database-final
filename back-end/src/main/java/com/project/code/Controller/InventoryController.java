@@ -142,14 +142,30 @@ public class InventoryController {
        List<Product>result= productRepository.findProductsByStoreId(storeid);
        map.put("products",result);
        return map;
-
-
     }
 
 // 6. Define the `getProductName` Method:
 //    - This method handles HTTP GET requests to filter products by category and name.
 //    - If either the category or name is `"null"`, adjust the filtering logic accordingly.
 //    - Return the filtered products in the response with the key `"product"`.
+
+    @GetMapping("filter/{category}/{name}/{storeid}")
+    public Map<String, Object> getProductName(@PathVariable String category, @PathVariable String name,
+                                              @PathVariable long storeid) {
+        Map<String, Object> map = new HashMap<>();
+        if (category.equals("null") ) {
+            map.put("product", productRepository.findByNameLike(storeid, name));
+            return map;
+        }
+        else if(name.equals("null"))
+        {
+            System.out.println("name is null");
+            map.put("product", productRepository.findByCategoryAndStoreId(storeid,category));
+            return map;
+        }
+        map.put("product", productRepository.findByNameAndCategory(storeid, name, category));
+        return map;
+    }
 
 
 // 7. Define the `searchProduct` Method:
