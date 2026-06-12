@@ -187,7 +187,12 @@ public class InventoryController {
 //    - It first validates if the product exists. If it does, it deletes the product from the `ProductRepository` and also removes the related inventory entry from the `InventoryRepository`.
 //    - Returns a success message with the key `"message"` indicating successful deletion.
 
-    
+    @DeleteMapping("/{id}")
+    public Map<String,String>removeProduct(@PathVariable Long productId){
+
+        
+
+    }
 
 
 // 9. Define the `validateQuantity` Method:
