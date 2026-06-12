@@ -176,15 +176,18 @@ public class InventoryController {
     @GetMapping("search/{name}/{storeid}")
     public Map<String, Object>searchProduct(@PathVariable String name, @PathVariable Long storeid){
 
-        
+        Map<String, Object>map=new HashMap<>();
+        map.put("product",productRepository.findByNameLike(storeid,name));
+        return map;
 
     }
-
 
 // 8. Define the `removeProduct` Method:
 //    - This method handles HTTP DELETE requests to delete a product by its ID.
 //    - It first validates if the product exists. If it does, it deletes the product from the `ProductRepository` and also removes the related inventory entry from the `InventoryRepository`.
 //    - Returns a success message with the key `"message"` indicating successful deletion.
+
+    
 
 
 // 9. Define the `validateQuantity` Method:
