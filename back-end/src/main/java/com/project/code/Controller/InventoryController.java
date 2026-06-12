@@ -173,6 +173,13 @@ public class InventoryController {
 //    - It uses `name` and `storeId` as parameters and searches for products that match the `name` in the specified store.
 //    - The search results are returned in the response with the key `"product"`.
 
+    @GetMapping("search/{name}/{storeid}")
+    public Map<String, Object>searchProduct(@PathVariable String name, @PathVariable Long storeid){
+
+        
+
+    }
+
 
 // 8. Define the `removeProduct` Method:
 //    - This method handles HTTP DELETE requests to delete a product by its ID.
