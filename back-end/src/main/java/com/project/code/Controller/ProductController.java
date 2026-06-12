@@ -1,5 +1,10 @@
 package com.project.code.Controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/product")
 public class ProductController {
 // 1. Set Up the Controller Class:
 //    - Annotate the class with `@RestController` to designate it as a REST controller for handling HTTP requests.
