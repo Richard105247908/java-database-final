@@ -47,16 +47,16 @@ public class InventoryController {
         Product product = combinedRequest.getProduct();
         Inventory inventory = combinedRequest.getInventory();
 
-        Map<String, String> response = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
         if (!serviceClass.validateProductId(product.getId())) {
 
-            response.put("Error" + product.getId(), "failed to update inventory" + inventory.getId());
-            return response;
+            map.put("Error" + product.getId(), "failed to update inventory" + inventory.getId());
+            return map;
         }
 
         productRepository.save(product);
-        response.put("message", "Successfully updated product with id: " + product.getId());
+        map.put("message", "Successfully updated product with id: " + product.getId());
 
         if (inventory != null) {
             try {
@@ -65,29 +65,29 @@ public class InventoryController {
                 if (result != null) {
                     inventory.setId(result.getId());
                     inventoryRepository.save(inventory);
-                    response.put("message", "Successfully updated product" + inventory.getId());
-                    return response;
+                    map.put("message", "Successfully updated product" + inventory.getId());
+                    return map;
 
 
             } else{
 
-                response.put("message", "No data available for this product or store id");
-                return response;
+                map.put("message", "No data available for this product or store id");
+                return map;
             }
 
 
         }catch(DataIntegrityViolationException e){
-            response.put("message", "Error: " + e);
+            map.put("message", "Error: " + e);
             System.out.println(e);
-            return response;
+            return map;
         } catch(Exception e){
-            response.put("message", "Error: " + e);
+            map.put("message", "Error: " + e);
             System.out.println(e);
-            return response;
+            return map;
         }
     }
 
-        return response;
+        return map;
     }
 
 
@@ -188,9 +188,19 @@ public class InventoryController {
 //    - Returns a success message with the key `"message"` indicating successful deletion.
 
     @DeleteMapping("/{id}")
-    public Map<String,String>removeProduct(@PathVariable Long productId){
+    public Map<String,String>removeProduct(@PathVariable Long id){
 
-        
+        Map<String, String>map=new HashMap<>();
+
+        if (!serviceClass.validateProductId(id)) {
+            map.put("message", "The product not present in database." +id);
+        }else{
+            inventoryRepository.deleteByProductId(id);
+            map.put("message", "The product was deleted" +id);
+
+        }
+
+        return map;
 
     }
 
