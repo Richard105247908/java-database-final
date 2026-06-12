@@ -193,21 +193,29 @@ public class InventoryController {
         Map<String, String>map=new HashMap<>();
 
         if (!serviceClass.validateProductId(id)) {
-            map.put("message", "The product not present in database." +id);
+            map.put("message", "Id " + id + " not present in database ");
         }else{
             inventoryRepository.deleteByProductId(id);
-            map.put("message", "The product was deleted" +id);
-
+            map.put("message", "Deleted product successfully with id: " + id);
         }
-
         return map;
 
     }
-
 
 // 9. Define the `validateQuantity` Method:
 //    - This method handles HTTP GET requests to validate if a specified quantity of a product is available in stock for a given store.
 //    - It checks the inventory for the product in the specified store and compares it to the requested quantity.
 //    - If sufficient stock is available, return `true`; otherwise, return `false`.
+
+    @GetMapping("validate/{quantity}/{storeId}/{productId}")
+    public boolean validateQuantity(@PathVariable int quantity, @PathVariable long storeId, @PathVariable long productId){
+
+        Inventory result=inventoryRepository.findByProductIdandStoreId(productId,storeId);
+
+        if (result.getStockLevel()>=quantity){
+            return true;
+        }
+        return false;
+    }
 
 }
