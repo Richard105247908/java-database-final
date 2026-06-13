@@ -5,12 +5,11 @@ import com.project.code.Repo.InventoryRepository;
 import com.project.code.Repo.ProductRepository;
 import com.project.code.Service.ServiceClass;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -43,17 +42,30 @@ public class ProductController {
 //    - Catch exceptions (e.g., `DataIntegrityViolationException`) and return appropriate error message.
 
     @PostMapping
-    public Map<String,String> addProduct(@RequestBody Product product){
+    public Map<String, String> addProduct(@RequestBody Product product) {
 
-        Map<String,String>map= new HashMap<>();
-       if( !serviceClass.validateProduct(product)){
-           productRepository.save(product);
-           map.put("message","Product has been saved to database"+product);
 
-       }else{
-           map.put("message","Product does not exist"+product);
-       }
+        Map<String, String> map = new HashMap<>();
+        if (!serviceClass.validateProduct(product)) {
+            map.put("message", "Product with this name exists" + product.getId());
+            return map;
 
+        }
+        try {
+
+            productRepository.save(product);
+            map.put("message", "Product has been added successfully" + product.getId());
+            return map;
+
+        } catch (DataIntegrityViolationException e) {
+            map.put("message", "Error: " + e);
+            System.out.println(e);
+            return map;
+        } catch (Exception e) {
+            map.put("message", "Error: " + e);
+            System.out.println(e);
+            return map;
+        }
     }
 
 
@@ -62,6 +74,16 @@ public class ProductController {
 //    - Accept product ID via `@PathVariable`.
 //    - Use `findById(id)` method from `ProductRepository` to fetch the product.
 //    - Return the product in a `Map<String, Object>` with key `products`.
+
+    @GetMapping("/prodcut/{id}")
+    public Map<String,Object>getProductbyId(@PathVariable Long id){
+
+        Map<String,Object>map=new HashMap<>();
+        Product result =productRepository.findByid(id);
+
+        map.put("Message",result);
+        return map;
+    }
 
 
  // 5. Define the `updateProduct` Method:
