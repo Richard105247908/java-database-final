@@ -130,12 +130,18 @@ public class ProductController {
 
     }
 
-
-
  // 7. Define the `listProduct` Method:
 //    - Annotate with `@GetMapping` to handle GET requests to fetch all products.
 //    - Fetch all products using `findAll()` method from `ProductRepository`.
 //    - Return all products in a `Map<String, Object>` with key `products`.
+
+    @GetMapping
+    public Map<String,Object>listProduct(){
+        Map<String,Object>map=new HashMap<>();
+
+        map.put("products",productRepository.findAll());
+        return map;
+    }
 
 
 // 8. Define the `getProductbyCategoryAndStoreId` Method:
