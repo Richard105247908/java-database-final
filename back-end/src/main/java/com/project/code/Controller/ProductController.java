@@ -107,12 +107,29 @@ public class ProductController {
         return map;
     }
 
-
 // 6. Define the `filterbyCategoryProduct` Method:
 //    - Annotate with `@GetMapping("/category/{name}/{category}")` to handle GET requests for filtering products by `name` and `category`.
 //    - Use conditional filtering logic if `name` or `category` is `"null"`.
 //    - Fetch products based on category using methods like `findByCategory()` or `findProductBySubNameAndCategory()`.
 //    - Return filtered products in a `Map<String, Object>` with key `products`.
+
+    @GetMapping("/category/{name}/{category}")
+    public Map<String, Object>filterbyCategoryProduct(@PathVariable String name,
+                                                      @PathVariable String category){
+
+        Map<String,Object>map=new HashMap<>();
+
+        if (name.equals("null")){
+            map.put("products",productRepository.findByCategory(category));
+        } else if (category.equals("null")){
+            map.put("products", productRepository.findByName(name));
+        }else{
+            map.put("products",productRepository.findProductBySubNameAndCategory(name,category));
+        }
+        return map;
+
+    }
+
 
 
  // 7. Define the `listProduct` Method:
