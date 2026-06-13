@@ -92,6 +92,21 @@ public class ProductController {
 //    - Use `save()` method from `ProductRepository` to update the product.
 //    - Return a success message with key `message` after updating the product.
 
+    @PutMapping
+    public Map<String,String>updateProduct(@RequestBody Product product){
+
+        Map<String,String>map=new HashMap<>();
+
+        try {
+            productRepository.save(product);
+            map.put("message","Data updated successfully");
+        }catch (Error e) {
+            map.put("message","Error occured");
+        }
+
+        return map;
+    }
+
 
 // 6. Define the `filterbyCategoryProduct` Method:
 //    - Annotate with `@GetMapping("/category/{name}/{category}")` to handle GET requests for filtering products by `name` and `category`.
