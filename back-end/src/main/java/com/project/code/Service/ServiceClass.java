@@ -44,12 +44,12 @@ public class ServiceClass {
 //    - Return Type: `boolean` (Returns `false` if a product with the same name exists, otherwise `true`)
 
     public Boolean validateProduct(Product product){
-        Product exists=productRepository.findByName(product.getName());
+        Product result=productRepository.findByName(product.getName());
 
-        if (product!=null){
-           return true;
+        if (result!=null){
+           return false;
         }else{
-            return false;
+            return true;
         }
     }
 

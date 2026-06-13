@@ -1,7 +1,17 @@
 package com.project.code.Controller;
 
+import com.project.code.Model.Product;
+import com.project.code.Repo.InventoryRepository;
+import com.project.code.Repo.ProductRepository;
+import com.project.code.Service.ServiceClass;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/product")
@@ -17,6 +27,13 @@ public class ProductController {
 //        - `ServiceClass` for product validation and business logic.
 //        - `InventoryRepository` for managing the inventory linked to products.
 
+    @Autowired
+    ProductRepository productRepository;
+    @Autowired
+    ServiceClass serviceClass;
+    @Autowired
+    InventoryRepository inventoryRepository;
+
 
 // 3. Define the `addProduct` Method:
 //    - Annotate with `@PostMapping` to handle POST requests for adding a new product.
@@ -24,6 +41,20 @@ public class ProductController {
 //    - Validate product existence using `validateProduct()` in `ServiceClass`.
 //    - Save the valid product using `save()` method of `ProductRepository`.
 //    - Catch exceptions (e.g., `DataIntegrityViolationException`) and return appropriate error message.
+
+    @PostMapping
+    public Map<String,String> addProduct(@RequestBody Product product){
+
+        Map<String,String>map= new HashMap<>();
+       if( !serviceClass.validateProduct(product)){
+           productRepository.save(product);
+           map.put("message","Product has been saved to database"+product);
+
+       }else{
+           map.put("message","Product does not exist"+product);
+       }
+
+    }
 
 
 // 4. Define the `getProductbyId` Method:
