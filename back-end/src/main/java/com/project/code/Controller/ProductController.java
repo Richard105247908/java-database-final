@@ -143,11 +143,18 @@ public class ProductController {
         return map;
     }
 
-
 // 8. Define the `getProductbyCategoryAndStoreId` Method:
 //    - Annotate with `@GetMapping("filter/{category}/{storeid}")` to filter products by `category` and `storeId`.
 //    - Use `findProductByCategory()` method from `ProductRepository` to retrieve products.
 //    - Return filtered products in a `Map<String, Object>` with key `product`.
+
+    @GetMapping("filter/{category}/{storeid}")
+    public Map<String, Object>getProductbyCategoryAndStoreId(@PathVariable String category,
+                                                             @PathVariable long storeid){
+
+        
+
+    }
 
 
 // 9. Define the `deleteProduct` Method:
