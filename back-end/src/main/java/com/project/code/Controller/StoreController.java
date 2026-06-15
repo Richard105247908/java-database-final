@@ -48,9 +48,11 @@ public class StoreController {
 //    - Annotate with `@GetMapping("validate/{storeId}")` to check if a store exists by its `storeId`.
 //    - Return a **boolean** indicating if the store exists.
 
+    @GetMapping("validate/{storeId}")
     public boolean validateStore(@PathVariable Long storeId){
 
         Store store =storeRepository.findStoreById(storeId);
+
         if (store!=null){
             return true;
         }else{
@@ -64,6 +66,8 @@ public class StoreController {
 //    - Accept `PlaceOrderRequestDTO` in the request body.
 //    - Return a success message with key `message` if the order is successfully placed.
 //    - Return an error message with key `Error` if there is an issue processing the order.
+
+
 
 
    
