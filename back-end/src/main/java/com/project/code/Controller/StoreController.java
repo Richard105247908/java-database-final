@@ -1,6 +1,20 @@
 package com.project.code.Controller;
 
 
+import com.project.code.Model.Store;
+import com.project.code.Repo.StoreRepository;
+import com.project.code.Service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/store")
 public class StoreController {
 // 1. Set Up the Controller Class:
 //    - Annotate the class with `@RestController` to designate it as a REST controller for handling HTTP requests.
@@ -12,11 +26,26 @@ public class StoreController {
 //        - `StoreRepository` for managing store data.
 //        - `OrderService` for handling order-related functionality.
 
+    @Autowired
+    StoreRepository storeRepository;
+    @Autowired
+    OrderService orderService;
+
 
  // 3. Define the `addStore` Method:
 //    - Annotate with `@PostMapping` to create an endpoint for adding a new store.
 //    - Accept `Store` object in the request body.
 //    - Return a success message in a `Map<String, String>` with the key `message` containing store creation confirmation.
+
+    @PostMapping
+    public Map<String,String> addStore(@RequestBody Store store){
+
+        Map<String,String>map=new HashMap<>();
+        Store savedStore=storeRepository.save(store);
+
+        map.put("message","Store added successfully with id "+savedStore.getId());
+        return map;
+    }
 
 
  // 4. Define the `validateStore` Method:
