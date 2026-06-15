@@ -166,6 +166,25 @@ public class ProductController {
 //    - Remove product from `Product` using `deleteById(id)` in `ProductRepository`.
 //    - Return a success message with key `message` indicating product deletion.
 
+    @DeleteMapping("/{id}")
+    public Map<String, String>deleteProduct(long id){
+
+        Map<String,String>map=new HashMap<>();
+
+        if (serviceClass.validateProductId(id)){
+            inventoryRepository.deleteByProductId(id);
+            productRepository.deleteById(id);
+
+            map.put("message","The product" +id +"was deleted");
+            return map;
+        }else{
+            map.put("message", "The product" +id +"was not found");
+            return map;
+        }
+        
+
+    }
+
 
  // 10. Define the `searchProduct` Method:
 //    - Annotate with `@GetMapping("/searchProduct/{name}")` to search for products by `name`.

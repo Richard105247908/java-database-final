@@ -59,7 +59,10 @@ public class ServiceClass {
 //    - Return Type: `boolean` (Returns `false` if the product does not exist with the given ID, otherwise `true`)
 
     public boolean validateProductId(Long id){
-        return productRepository.findByid(id) !=null;
+
+            if (id == null) return false; // Prevents potential errors if id is null
+            return productRepository.findByid(id) != null;
+        //return productRepository.findByid(id) !=null;
     }
 
 // 4. **getInventoryId Method**:
