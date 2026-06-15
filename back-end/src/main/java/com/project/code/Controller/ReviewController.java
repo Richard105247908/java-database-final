@@ -1,5 +1,6 @@
 package com.project.code.Controller;
 
+import com.project.code.Model.Customer;
 import com.project.code.Model.Review;
 import com.project.code.Repo.CustomerRepository;
 import com.project.code.Repo.ReviewRepository;
@@ -53,12 +54,27 @@ public class ReviewController {
             Map<String, Object> reviewMap = new HashMap<>();
             reviewMap.put("review",review.getComment());
             reviewMap.put("rating", review.getRating());
+
+            //Fetch customer details using customerId
+
+            Customer customer = customerRepository.findByid(review.getCustomerId());
+            if (customer !=null){
+                reviewMap.put("customerName", customer.getName());
+            }else{
+                reviewMap.put("customerName", "Unknown");
+            }
+            reviewsWithCustomerNames.add(reviewMap);
         }
-
-
+        map.put("reviews", reviewsWithCustomerNames);
+        return map;
 
     }
 
-    
-   
+    @GetMapping
+    public Map<String,Object> getAllReviews() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("reviews", reviewRepository.findAll());
+        return map;
+
+    }
 }
