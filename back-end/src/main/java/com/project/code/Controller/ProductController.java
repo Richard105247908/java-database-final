@@ -150,10 +150,12 @@ public class ProductController {
 
     @GetMapping("filter/{category}/{storeid}")
     public Map<String, Object>getProductbyCategoryAndStoreId(@PathVariable String category,
-                                                             @PathVariable long storeid){
+                                                             @PathVariable long storeid) {
+        Map<String, Object> map = new HashMap<>();
 
-        
-
+        List<Product>results= productRepository.findByCategoryAndStoreId(storeid, category);
+        map.put("products", results);
+        return map;
     }
 
 
