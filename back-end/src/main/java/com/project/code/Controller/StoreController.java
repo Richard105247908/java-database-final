@@ -1,6 +1,7 @@
 package com.project.code.Controller;
 
 
+import com.project.code.Model.PlaceOrderRequestDTO;
 import com.project.code.Model.Store;
 import com.project.code.Repo.StoreRepository;
 import com.project.code.Service.OrderService;
@@ -68,6 +69,17 @@ public class StoreController {
 //    - Return an error message with key `Error` if there is an issue processing the order.
 
 
+    public Map<String,String>placeOrder(@RequestBody PlaceOrderRequestDTO placeOrderRequestDTO){
+
+        Map<String,String>map=new HashMap<>();
+
+
+         orderService.saveOrder( placeOrderRequestDTO);
+         map.put("message","Order placed successfully");
+
+         return map;
+
+    }
 
 
    

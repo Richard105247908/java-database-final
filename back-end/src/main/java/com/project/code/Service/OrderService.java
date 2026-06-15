@@ -30,7 +30,7 @@ public class OrderService {
 //    - Parameters: `PlaceOrderRequestDTO placeOrderRequest` (Request data for placing an order)
 //    - Return Type: `void` (This method doesn't return anything, it just processes the order)
 
- void saveOrder (PlaceOrderRequestDTO placeOrderRequest) {
+ public void saveOrder (PlaceOrderRequestDTO placeOrderRequest) {
 
 
 // 2. **Retrieve or Create the Customer**:
