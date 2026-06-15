@@ -5,10 +5,7 @@ import com.project.code.Model.Store;
 import com.project.code.Repo.StoreRepository;
 import com.project.code.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,10 +44,19 @@ public class StoreController {
         return map;
     }
 
-
  // 4. Define the `validateStore` Method:
 //    - Annotate with `@GetMapping("validate/{storeId}")` to check if a store exists by its `storeId`.
 //    - Return a **boolean** indicating if the store exists.
+
+    public boolean validateStore(@PathVariable Long storeId){
+
+        Store store =storeRepository.findStoreById(storeId);
+        if (store!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 
  // 5. Define the `placeOrder` Method:
