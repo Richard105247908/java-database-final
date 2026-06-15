@@ -194,7 +194,7 @@ public class ProductController {
 
     @GetMapping("/searchProduct/{name}")
     public Map<String, Object> searchProduct(@PathVariable String name) {
-        
+
         Map<String, Object> map = new HashMap<>();
         map.put("products", productRepository.findProductBySubName(name));
         return map;
