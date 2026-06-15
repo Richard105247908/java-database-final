@@ -167,21 +167,22 @@ public class ProductController {
 //    - Return a success message with key `message` indicating product deletion.
 
     @DeleteMapping("/{id}")
-    public Map<String, String>deleteProduct(long id){
+    public Map<String, String>deleteProduct(@PathVariable Long id){
 
         Map<String,String>map=new HashMap<>();
 
-        if (serviceClass.validateProductId(id)){
+        if (!serviceClass.validateProductId(id)){
+            map.put("message", "The product" +id +"was not found");
+            return map;
+        }else{
             inventoryRepository.deleteByProductId(id);
             productRepository.deleteById(id);
 
+
             map.put("message","The product" +id +"was deleted");
             return map;
-        }else{
-            map.put("message", "The product" +id +"was not found");
-            return map;
         }
-        
+
 
     }
 
@@ -190,6 +191,15 @@ public class ProductController {
 //    - Annotate with `@GetMapping("/searchProduct/{name}")` to search for products by `name`.
 //    - Use `findProductBySubName()` method from `ProductRepository` to search products by name.
 //    - Return search results in a `Map<String, Object>` with key `products`.
+
+    @GetMapping("/searchProduct/{name}")
+    public Map<String, Object> searchProduct(@PathVariable String name) {
+        
+        Map<String, Object> map = new HashMap<>();
+        map.put("products", productRepository.findProductBySubName(name));
+        return map;
+
+    }
 
 
   
