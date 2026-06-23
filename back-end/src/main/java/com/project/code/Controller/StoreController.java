@@ -69,14 +69,20 @@ public class StoreController {
 //    - Return an error message with key `Error` if there is an issue processing the order.
 
 
+    @PostMapping("/placeOrder")
     public Map<String,String>placeOrder(@RequestBody PlaceOrderRequestDTO placeOrderRequestDTO){
 
         Map<String,String>map=new HashMap<>();
 
 
-         orderService.saveOrder( placeOrderRequestDTO);
-         map.put("message","Order placed successfully");
-
+        try {
+            orderService.saveOrder(placeOrderRequestDTO);
+            map.put("message", "Order placed successfully");
+        }
+        catch (Error e)
+        {
+            map.put("Error",""+e);
+        }
          return map;
 
     }

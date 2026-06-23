@@ -1,6 +1,9 @@
 package com.project.code.Controller;
 
 
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class GlobalExceptionHandler {
 
 // 1. Set Up the Global Exception Handler Class:
