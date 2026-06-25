@@ -59,10 +59,10 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(OrderDetails order, Integer quantity, Product product, Double price) {
-        this.order=order;
-        this.quantity = quantity;
+    public OrderItem(OrderDetails order, Product product, Integer quantity, Double price) {
+        this.order = order;
         this.product = product;
+        this.quantity = quantity;
         this.price = price;
     }
 
