@@ -10,7 +10,7 @@ public class Inventory {
 //    - Type: private long 
 //    - This field will represent the unique identifier for the inventory entry.
 //    - Use @Id to mark it as the primary key.
-//    - Use @GeneratedValue(strategy = GenerationType.IDENTITY) to auto-increment it. ;
+//    - Use @GeneratedValue(strategy = GenerationType.IDENTITY) to auto-increment it.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -33,7 +33,7 @@ public class Inventory {
     @ManyToOne
     @JsonBackReference("inventory-store")
     @JoinColumn(name = "store_id")
-    private Product store;
+    private Store store;
 
 // 4. Add 'stockLevel' field:
 //    - Type: private Integer
@@ -53,9 +53,10 @@ public class Inventory {
 
 // 7. Create a constructor:
 //    - Add a constructor that takes a Product, Store, and Integer stockLevel to initialize the Inventory object.
+    public Inventory(){}
 
-    public Inventory(long id, Product product, Product store, Integer stockLevel) {
-        this.id = id;
+    public Inventory( Product product, Store store, Integer stockLevel) {
+
         this.product = product;
         this.store = store;
         this.stockLevel = stockLevel;
@@ -89,11 +90,11 @@ public class Inventory {
         this.product = product;
     }
 
-    public Product getStore() {
+    public Store getStore() {
         return store;
     }
 
-    public void setStore(Product store) {
+    public void setStore(Store store) {
         this.store = store;
     }
 

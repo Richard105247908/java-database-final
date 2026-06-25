@@ -2,6 +2,7 @@ package com.project.code.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.Order;
 import jakarta.validation.constraints.NotNull;
@@ -54,7 +55,7 @@ public class Customer {
     // Example: @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     // Example: @JsonManagedReference
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
-    @JsonBackReference
+    @JsonManagedReference
     private List<OrderDetails> orders;
 
 // 6. Getters and Setters:
