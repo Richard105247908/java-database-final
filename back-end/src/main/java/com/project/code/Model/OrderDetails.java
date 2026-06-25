@@ -2,6 +2,7 @@ package com.project.code.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -29,7 +30,7 @@ public class OrderDetails {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Customer customer;
 
 // 3. Add 'store' field:
@@ -40,7 +41,7 @@ public class OrderDetails {
 
     @ManyToOne
     @JoinColumn(name = "store_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Store store;
 
 // 4. Add 'totalPrice' field:
@@ -62,7 +63,7 @@ public class OrderDetails {
 //    - Apply @JsonManagedReference to prevent circular references during JSON serialization.
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
-    @JsonBackReference
+    @JsonManagedReference
     private List<OrderItem> orderItems;
 
 // 7. Add constructors:
