@@ -3,6 +3,7 @@ package com.project.code.Service;
 
 import com.project.code.Model.*;
 import com.project.code.Repo.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ public class OrderService {
 //    - Parameters: `PlaceOrderRequestDTO placeOrderRequest` (Request data for placing an order)
 //    - Return Type: `void` (This method doesn't return anything, it just processes the order)
 
+    @Transactional
  public void saveOrder (PlaceOrderRequestDTO placeOrderRequest) {
 
 
@@ -38,6 +40,7 @@ public class OrderService {
 //    - If the customer exists, use the existing customer; otherwise, create and save a new customer using `customerRepository.save()`.
 
      Customer existingCustomer = customerRepository.findByEmail(placeOrderRequest.getCustomerEmail());
+
      Customer customer = new Customer();
      customer.setName(placeOrderRequest.getCustomerName());
      customer.setEmail(placeOrderRequest.getCustomerEmail());

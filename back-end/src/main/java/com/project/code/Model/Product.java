@@ -1,7 +1,6 @@
 package com.project.code.Model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -60,7 +59,7 @@ public class Product {
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     @JsonManagedReference ("inventory-product")
-    private List<Inventory>inventory_product;
+    private List<Inventory> inventory;
 
 // 7. Add @Entity annotation:
 //    - Use @Entity above the class name to mark it as a JPA entity.
@@ -109,12 +108,12 @@ public class Product {
         this.sku = sku;
     }
 
-    public List<Inventory> getInventory_product() {
-        return inventory_product;
+    public List<Inventory> getInventory() {
+        return inventory;
     }
 
-    public void setInventory_product(List<Inventory> inventory_product) {
-        this.inventory_product = inventory_product;
+    public void setInventory(List<Inventory> inventory) {
+        this.inventory = inventory;
     }
 }
 

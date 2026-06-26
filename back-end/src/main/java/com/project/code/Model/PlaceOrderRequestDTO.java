@@ -9,8 +9,9 @@ public class PlaceOrderRequestDTO {
     private String customerEmail;
     private String customerPhone;
     private String datetime;
-    private List<PurchaseProductDTO> purchaseProduct;
     private Double totalPrice;
+    private List<PurchaseProductDTO> purchaseProduct;
+
 
     // Getters and Setters
 

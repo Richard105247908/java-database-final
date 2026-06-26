@@ -1,4 +1,4 @@
-const apiURL = '';
+const apiURL = 'http://localhost:8080';
 let students = [];
 let Ordercount = 1;
 let deleteRow = [];
@@ -257,10 +257,10 @@ function viewProduct(event) {
         event.preventDefault();
     }
 
-    let inputstoreId = document.getElementById('vstoreId');
+    let inputstoreId = document.getElementById('storeId');
     document.getElementById('searchBar').disabled = false
     document.getElementById('SearchButton').disabled = false;
-    document.getElementById('vstoreId').disabled = false
+    document.getElementById('storeId').disabled = false
     document.getElementById('category').disabled = false;
     storeId = inputstoreId.value;
     inputstoreId.disabled = true;
@@ -299,7 +299,7 @@ function filter() {
         category = null;
     }
 
-    let storeId = document.getElementById('vstoreId').value;
+    let storeId = document.getElementById('storeId').value;
 
 
     let url = `${apiURL}/inventory/filter/${category}/${productName}/${storeId}`;

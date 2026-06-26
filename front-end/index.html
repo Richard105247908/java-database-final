@@ -67,7 +67,7 @@
                         <form id="myform" onsubmit="viewProduct(event)"
                             style="display: flex; justify-content: center; align-items: center;">
                             <label for="storeId">Store Id: </label>
-                            <input type="number" name="storeId" id="vstoreId" placeholder="Store Id" required>
+                            <input type="number" name="storeId" id="storeId" placeholder="Store Id" required>
                             <input type="submit" id="ViewProductButton" value="View products">
                         </form>
                     </div>
@@ -191,7 +191,7 @@
         <div class="tab-pane container active" id="AddStore">
             <div>
                 <div id="form">
-                    <form id="myform" class="addStoreForm" onsubmit="addStore(event)">
+                    <form id="addStoreForm" class="addStoreForm" onsubmit="addStore(event)">
                         <label for="storeName"> Name:</label>
                         <input type="text" id="storeName" name="storeName" placeholder=" Store Name" required>
                         <label for="storeAddress1"> Address Line 1:</label>
