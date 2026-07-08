@@ -3,8 +3,8 @@ let students = [];
 let Ordercount = 1;
 let deleteRow = [];
 
-function resetForm() {
-    const inputs = document.querySelectorAll("#myform input:not([type='submit']), #myform select");
+function resetForm(formId = 'myform') {
+    const inputs = document.querySelectorAll(`#${formId} input:not([type='submit']), #${formId} select`);
     inputs.forEach(input => {
         input.value = "";
     })
@@ -73,9 +73,10 @@ function createMoreOrderField() {
 function deleteDiv(count) {
 
     let divToDelete = document.getElementById(`${count}`);
+    let remainingRows = document.querySelectorAll('#OrderListBody tr').length;
 
-    // Check if the div exists
-    if (divToDelete && Ordercount != 1) {
+    // Check if the div exists and at least one row will remain after removal
+    if (divToDelete && remainingRows > 1) {
         divToDelete.remove();
         deleteRow.push(count);
     }
@@ -247,7 +248,7 @@ function addStore(event) {
         })
         .then(data => {
             alert(data.message);
-            resetForm();
+            resetForm('addStoreForm');
         })
 }
 

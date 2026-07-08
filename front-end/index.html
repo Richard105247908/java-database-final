@@ -213,14 +213,15 @@
         <div class="tab-pane container fade" id="PlaceOrder">
 
             <div id="Orderform" class="container">
-                <form id="myform" onsubmit="validateStoreId(event)"
+                <form id="validateStoreForm" onsubmit="validateStoreId(event)"
                     style="display:flex;align-items: center; justify-content: center; margin-bottom: 50px;">
                     <label for="orderStoreId"> Store Id:</label>
                     <input type="number" name="orderStoreId" id="orderStoreId" placeholder=" Store Id" required>
 
-                    <input type="submit" id="ViewProductButton" value="Validate">
+                    <input type="submit" id="ValidateStoreButton" value="Validate">
 
                 </form>
+
                 <form onsubmit="placeOrder(event)">
                     <div id="displayForm" style="display: none;">
 
@@ -364,7 +365,7 @@
             const storeId = params.get('storeid');
             if (storeId) 
             {
-                document.getElementById('vstoreId').value=storeId;
+                document.getElementById('storeId').value=storeId;
                 document.getElementById('ViewProductButton').click();
             }
             if (navbar) {
@@ -388,7 +389,7 @@
         }
 
         function redirectToAddPrdouct() {
-            let storeId = document.getElementById('vstoreId').value;
+            let storeId = document.getElementById('storeId').value;
             if (storeId) {
                 location.href = `add-product.html?storeId=${storeId}`
             }
