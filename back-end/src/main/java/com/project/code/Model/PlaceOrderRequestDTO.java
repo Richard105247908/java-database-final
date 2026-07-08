@@ -13,8 +13,6 @@ public class PlaceOrderRequestDTO {
     private List<PurchaseProductDTO> purchaseProduct;
 
 
-    // Getters and Setters
-
     public Long getStoreId() {
         return storeId;
     }

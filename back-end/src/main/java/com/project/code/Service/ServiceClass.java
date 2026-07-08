@@ -21,12 +21,6 @@ public class ServiceClass {
         this.productRepository = productRepository;
     }
 
-
-// 1. **validateInventory Method**:
-//    - Checks if an inventory record exists for a given product and store combination.
-//    - Parameters: `Inventory inventory`
-//    - Return Type: `boolean` (Returns `false` if inventory exists, otherwise `true`)
-
    public Boolean validateInventory(Inventory inventory){
       Inventory result=inventoryRepository.findByProductIdandStoreId(inventory.getProduct().getId(),inventory.getStore().getId());
 
@@ -38,11 +32,6 @@ public class ServiceClass {
 
     }
 
-// 2. **validateProduct Method**:
-//    - Checks if a product exists by its name.
-//    - Parameters: `Product product`
-//    - Return Type: `boolean` (Returns `false` if a product with the same name exists, otherwise `true`)
-
     public Boolean validateProduct(Product product){
         Product result=productRepository.findByName(product.getName());
 
@@ -53,11 +42,6 @@ public class ServiceClass {
         }
     }
 
-// 3. **ValidateProductId Method**:
-//    - Checks if a product exists by its ID.
-//    - Parameters: `long id`
-//    - Return Type: `boolean` (Returns `false` if the product does not exist with the given ID, otherwise `true`)
-
     public boolean validateProductId(Long id){
 
             if (id == null) return false; // Prevents potential errors if id is null
@@ -65,10 +49,6 @@ public class ServiceClass {
         //return productRepository.findByid(id) !=null;
     }
 
-// 4. **getInventoryId Method**:
-//    - Fetches the inventory record for a given product and store combination.
-//    - Parameters: `Inventory inventory`
-//    - Return Type: `Inventory` (Returns the inventory record for the product-store combination)
 
     public Inventory getInventoryId(Inventory inventory){
         Inventory result = inventoryRepository.findByProductIdandStoreId(inventory.getProduct().getId(),inventory.getStore().getId());
